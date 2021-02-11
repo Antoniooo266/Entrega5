@@ -13,6 +13,7 @@ public class Ventana_Pass extends JFrame{
     private int contador = 0;
     private JButton arriba;
     private JButton abajo;
+    private JButton generarPass;
     private JCheckBox minus;
     private JCheckBox mayus;
     private JCheckBox sign;
@@ -55,28 +56,30 @@ public class Ventana_Pass extends JFrame{
 
         JPanel principal = new JPanel();
         principal.add(p1, BorderLayout.NORTH);
-        principal.add(p3, BorderLayout.SOUTH);
+        principal.add(p3, BorderLayout.CENTER);
+        principal.add(generarPass = new JButton("GENERAR"), BorderLayout.SOUTH);
 
         add(principal);
         setSize(800,300);
         setVisible(true);
     }
 
-    private class FuncionBotonArriba implements ActionListener{
+    private class FuncionBotonArriba implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-        contador++;
-        label.setText(String.valueOf(contador));
+            if (contador >= 0) {
+                contador++;
+                label.setText(String.valueOf(contador));
+            }
         }
     }
-    private class FuncionBotonAbajo implements ActionListener{
+    private class FuncionBotonAbajo implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-        contador--;
-        label.setText(String.valueOf(contador));
+             if (contador >= 0) {
+                 contador--;
+                 label.setText(String.valueOf(contador));
+             }
         }
     }
-
-
-
 }
