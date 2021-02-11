@@ -87,7 +87,6 @@ public class Ventana_Pass extends JFrame{
         }
     }
     public class GenerarPass implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
 
