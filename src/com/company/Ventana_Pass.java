@@ -10,7 +10,7 @@ public class Ventana_Pass extends JFrame{
     private JLabel title;
     private JLabel body;
     private TextField passwd;
-    private int contador = 0;
+    private int contador = 8;
     private JButton arriba;
     private JButton abajo;
     private JButton generarPass;
@@ -49,9 +49,13 @@ public class Ventana_Pass extends JFrame{
         JPanel p3 = new JPanel();
         setLayout(new GridLayout(1,4,5,5));
         p3.add(mayus = new JCheckBox("Mayusculas"));
-        p3.add(mayus = new JCheckBox("Minusculas"));
-        p3.add(mayus = new JCheckBox("Signos"));
-        p3.add(mayus = new JCheckBox("Numeros"));
+        mayus.addActionListener(new GenerarPass());
+        p3.add(minus = new JCheckBox("Minusculas"));
+        minus.addActionListener(new GenerarPass());
+        p3.add(sign = new JCheckBox("Signos"));
+        sign.addActionListener(new GenerarPass());
+        p3.add(num = new JCheckBox("Numeros"));
+        num.addActionListener(new GenerarPass());
         p3.add(p2, BorderLayout.WEST);
 
         JPanel principal = new JPanel();
@@ -67,7 +71,7 @@ public class Ventana_Pass extends JFrame{
     private class FuncionBotonArriba implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (contador >= 0) {
+            if (contador >= 8) {
                 contador++;
                 label.setText(String.valueOf(contador));
             }
@@ -76,10 +80,17 @@ public class Ventana_Pass extends JFrame{
     private class FuncionBotonAbajo implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-             if (contador >= 0) {
+             if (contador >= 8) {
                  contador--;
                  label.setText(String.valueOf(contador));
              }
+        }
+    }
+    public class GenerarPass implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
         }
     }
 }
