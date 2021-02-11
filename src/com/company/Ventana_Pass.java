@@ -4,18 +4,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 
-public class Ventana_Pass extends JFrame implements ActionListener {
+public class Ventana_Pass extends JFrame{
     private JLabel title;
     private JLabel body;
     private TextField passwd;
+    private int contador = 0;
     private JButton arriba;
     private JButton abajo;
     private JCheckBox minus;
     private JCheckBox mayus;
-    private JCheckBox signos;
+    private JCheckBox sign;
     private JCheckBox num;
-    private JLabel contador;
+    private JLabel label;
+    String minusculas = "qwertyuiopñlkjhgfdsazxcvbnm";
+    String mayusculas = "QWERTYUIOPÑLKJHGFDSAZXCVBNM";
+    String signos = "?¡¿![]*()/&%@|";
+    String numeros = "1234567890";
 
     public Ventana_Pass(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,8 +40,10 @@ public class Ventana_Pass extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
         p2.add(new JLabel("Longitud"));
         p2.add(arriba = new JButton("^"));
+        arriba.addActionListener(new FuncionBotonArriba());
         p2.add(abajo = new JButton("v"));
-        p2.add(contador = new JLabel("0"));
+        abajo.addActionListener(new FuncionBotonAbajo());
+        p2.add(label = new JLabel(String.valueOf(contador)));
 
         JPanel p3 = new JPanel();
         setLayout(new GridLayout(1,4,5,5));
@@ -54,8 +62,21 @@ public class Ventana_Pass extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+    private class FuncionBotonArriba implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        contador++;
+        label.setText(String.valueOf(contador));
+        }
     }
+    private class FuncionBotonAbajo implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        contador--;
+        label.setText(String.valueOf(contador));
+        }
+    }
+
+
+
 }
