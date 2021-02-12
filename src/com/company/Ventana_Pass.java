@@ -4,25 +4,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Ventana_Pass extends JFrame{
     private JLabel title;
     private JLabel body;
-    private TextField passwd;
+    private JLabel password;
     private int contador = 8;
     private JButton arriba;
     private JButton abajo;
-    private JButton generarPass;
+    private JButton generar;
     private JCheckBox minus;
     private JCheckBox mayus;
     private JCheckBox sign;
     private JCheckBox num;
     private JLabel label;
-    String minusculas = "qwertyuiopñlkjhgfdsazxcvbnm";
-    String mayusculas = "QWERTYUIOPÑLKJHGFDSAZXCVBNM";
-    String signos = "?¡¿![]*()/&%@|";
-    String numeros = "1234567890";
+
 
     public Ventana_Pass(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,7 +34,7 @@ public class Ventana_Pass extends JFrame{
         p1.add(body = new JLabel());
         body.setText("<html><p>Genera tus passwords seguros con un solo CLICK!</p><br><p> -Sin tener que pensar</p><br><p> -Elige de que tipo quieres que sea (Signos, mayusculas, etc.)</p><br><p> -Sencilo y rapido ¡A QUE ESPERAS!</p></html>");
         body.setFont(new Font("Serif", Font.PLAIN, 13));
-        p1.add(passwd = new TextField("Your new password"), BorderLayout.SOUTH);
+        p1.add(password = new JLabel("Your new password"), BorderLayout.SOUTH);
 
         JPanel p2 = new JPanel();
         setLayout(new FlowLayout());
@@ -61,7 +60,7 @@ public class Ventana_Pass extends JFrame{
         JPanel principal = new JPanel();
         principal.add(p1, BorderLayout.NORTH);
         principal.add(p3, BorderLayout.CENTER);
-        principal.add(generarPass = new JButton("GENERAR"), BorderLayout.SOUTH);
+        principal.add(generar = new JButton("GENERAR"), BorderLayout.SOUTH);
 
         add(principal);
         setSize(800,300);
@@ -87,9 +86,35 @@ public class Ventana_Pass extends JFrame{
         }
     }
     public class GenerarPass implements ActionListener{
+        Random random = new Random();
+        List<Character> Contraseña = new ArrayList<Character>();
+        private String passwd;
         @Override
         public void actionPerformed(ActionEvent e) {
-
-        }
+                if (mayus.isSelected()) {
+                    for (char i = 65; i >= 65 && i <= 90; i++) {
+                        Contraseña.add(i);
+                    }
+                }
+                if (minus.isSelected()) {
+                    for (char i = 97; i >= 97 && i <= 122; i++) {
+                        Contraseña.add(i);
+                    }
+                }
+                if (sign.isSelected()) {
+                    for (char i = 33; i >= 33 && i <= 47; i++) {
+                        Contraseña.add(i);
+                    }
+                }
+                if (num.isSelected()) {
+                    for (char i = 48; i >= 48 && i <= 57; i++) {
+                        Contraseña.add(i);
+                    }
+                }
+                for (int i = 0; i < contador; i++) {
+                    passwd += Contraseña.get(random.nextInt(Contraseña.size()));
+                }
+                password.setText(passwd);
+            }
     }
 }
