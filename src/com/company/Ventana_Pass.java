@@ -85,34 +85,39 @@ public class Ventana_Pass extends JFrame{
 
     public class GenerarPass implements ActionListener{
         Random random = new Random();
-        List<Character> Contraseña = new ArrayList<Character>();
-        private String passwd;
+        ArrayList<Character> Contraseña = new ArrayList<Character>();
+        private String passwd = " ";
         @Override
         public void actionPerformed(ActionEvent e) {
-                if (mayus.isSelected()) {
-                    for (char i = 65; i >= 65 && i <= 90; i++) {
+            Contraseña.clear();
+            if (mayus.isSelected()) {
+                    for (char i = 65; i <= 90; i++) {
                         Contraseña.add(i);
                     }
                 }
                 if (minus.isSelected()) {
-                    for (char i = 97; i >= 97 && i <= 122; i++) {
+                    for (char i = 97; i <= 122; i++) {
                         Contraseña.add(i);
                     }
                 }
                 if (sign.isSelected()) {
-                    for (char i = 33; i >= 33 && i <= 47; i++) {
+                    for (char i = 33; i <= 47; i++) {
                         Contraseña.add(i);
                     }
                 }
                 if (num.isSelected()) {
-                    for (char i = 48; i >= 48 && i <= 57; i++) {
+                    for (char i = 48; i <= 57; i++) {
                         Contraseña.add(i);
                     }
                 }
                 for (int i = 0; i < contador; i++) {
                     passwd += Contraseña.get(random.nextInt(Contraseña.size()));
+                    password.setText(passwd);
                 }
-                password.setText(passwd);
             }
+    }
+
+    public static void main(String[] args) {
+        Ventana_Pass v1 = new Ventana_Pass();
     }
 }
