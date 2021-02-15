@@ -90,6 +90,7 @@ public class Ventana_Pass extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Parametros de el codigo ASCII
             Contraseña.clear();
             if (mayus.isSelected()) {
                 for (char i = 65; i <= 90; i++) {
