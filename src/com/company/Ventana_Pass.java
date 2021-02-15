@@ -5,10 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-public class Ventana_Pass extends JFrame{
+public class Ventana_Pass extends JFrame {
     private JLabel title;
     private JLabel body;
     private JLabel password;
@@ -23,12 +22,12 @@ public class Ventana_Pass extends JFrame{
     private JLabel label;
 
 
-    public Ventana_Pass(){
+    public Ventana_Pass() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JPanel p1 = new JPanel();
-        setLayout(new GridLayout(2,1));
+        setLayout(new GridLayout(2, 1));
         p1.add(title = new JLabel("PassRandom.com"));
         title.setFont(new Font("Serif", Font.PLAIN, 28));
         p1.add(body = new JLabel());
@@ -46,7 +45,7 @@ public class Ventana_Pass extends JFrame{
         p2.add(label = new JLabel(String.valueOf(contador)));
 
         JPanel p3 = new JPanel();
-        setLayout(new GridLayout(1,4,5,5));
+        setLayout(new GridLayout(1, 4, 5, 5));
         p3.add(mayus = new JCheckBox("Mayusculas"));
         p3.add(minus = new JCheckBox("Minusculas"));
         p3.add(sign = new JCheckBox("Signos"));
@@ -60,7 +59,7 @@ public class Ventana_Pass extends JFrame{
         generar.addActionListener(new GenerarPass());
 
         add(principal);
-        setSize(800,300);
+        setSize(800, 300);
         setVisible(true);
     }
 
@@ -73,48 +72,50 @@ public class Ventana_Pass extends JFrame{
             }
         }
     }
+
     private class FuncionBotonAbajo implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-             if (contador >= 8) {
-                 contador--;
-                 label.setText(String.valueOf(contador));
-             }
+            if (contador >= 8) {
+                contador--;
+                label.setText(String.valueOf(contador));
+            }
         }
     }
 
-    public class GenerarPass implements ActionListener{
+    public class GenerarPass implements ActionListener {
         Random random = new Random();
         ArrayList<Character> Contraseña = new ArrayList<Character>();
         private String passwd = " ";
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Contraseña.clear();
             if (mayus.isSelected()) {
-                    for (char i = 65; i <= 90; i++) {
-                        Contraseña.add(i);
-                    }
-                }
-                if (minus.isSelected()) {
-                    for (char i = 97; i <= 122; i++) {
-                        Contraseña.add(i);
-                    }
-                }
-                if (sign.isSelected()) {
-                    for (char i = 33; i <= 47; i++) {
-                        Contraseña.add(i);
-                    }
-                }
-                if (num.isSelected()) {
-                    for (char i = 48; i <= 57; i++) {
-                        Contraseña.add(i);
-                    }
-                }
-                for (int i = 0; i < contador; i++) {
-                    passwd += Contraseña.get(random.nextInt(Contraseña.size()));
-                    password.setText(passwd);
+                for (char i = 65; i <= 90; i++) {
+                    Contraseña.add(i);
                 }
             }
+            if (minus.isSelected()) {
+                for (char i = 97; i <= 122; i++) {
+                    Contraseña.add(i);
+                }
+            }
+            if (sign.isSelected()) {
+                for (char i = 33; i <= 47; i++) {
+                    Contraseña.add(i);
+                }
+            }
+            if (num.isSelected()) {
+                for (char i = 48; i <= 57; i++) {
+                    Contraseña.add(i);
+                }
+            }
+            for (int i = 0; i < contador; i++) {
+                passwd += Contraseña.get(random.nextInt(Contraseña.size()));
+                password.setText(passwd);
+            }
+        }
     }
 
     public static void main(String[] args) {
